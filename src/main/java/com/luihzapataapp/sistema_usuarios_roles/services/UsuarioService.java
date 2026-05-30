@@ -147,8 +147,7 @@ public class UsuarioService {
         throw new RuntimeException("No puedes eliminar tu propia cuenta");
     }
 
-    // Verificar que el usuario existe antes de eliminarlo
-    usuarioRepositorio.findById(idUsuarioAEliminar)
+    Usuario usuario = usuarioRepositorio.findById(idUsuarioAEliminar)
         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
     usuarioRepositorio.deleteById(idUsuarioAEliminar);

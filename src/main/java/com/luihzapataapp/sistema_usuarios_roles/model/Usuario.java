@@ -21,8 +21,8 @@ import lombok.Setter;
 
 
 
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor// este genera un constructor con todos los atributos de la clase. que nos permite crear objetos de la manera mas completa posible
+@NoArgsConstructor// genera un constructor vacio para crear entidades sin la necesidad de pasarle valores
 @Getter
 @Setter
 @Data
