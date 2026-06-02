@@ -7,8 +7,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UsuarioBienvenida {
+public class UsuarioBienvenidaDto {
     private String nombre;
     private String rol;
 
-}
+}  

@@ -1,19 +1,21 @@
 package com.luihzapataapp.sistema_usuarios_roles.services;
 
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
-
+import com.luihzapataapp.sistema_usuarios_roles.dto.UsuarioBienvenidaDto;
+import com.luihzapataapp.sistema_usuarios_roles.dto.UsuarioEditarDto;
+import com.luihzapataapp.sistema_usuarios_roles.dto.UsuarioIngresoDto;
+import com.luihzapataapp.sistema_usuarios_roles.model.Rol;
+import com.luihzapataapp.sistema_usuarios_roles.model.Usuario;
 import com.luihzapataapp.sistema_usuarios_roles.repositories.RolRepository;
 import com.luihzapataapp.sistema_usuarios_roles.repositories.UsuarioRepository;
-import com.luihzapataapp.sistema_usuarios_roles.model.Usuario;
-import com.luihzapataapp.sistema_usuarios_roles.dto.UsuarioBienvenida;
-import com.luihzapataapp.sistema_usuarios_roles.dto.UsuarioIngresoDto;
-import com.luihzapataapp.sistema_usuarios_roles.model.Rol;  
-import com.luihzapataapp.sistema_usuarios_roles.dto.UsuarioEditarDto;
+
+import lombok.RequiredArgsConstructor;
 
 
 
@@ -72,11 +74,11 @@ public class UsuarioService {
         return usuarioestado.isEstado();
     }
 
-    public UsuarioBienvenida bienvenida(Integer idUsuario){
+    public UsuarioBienvenidaDto bienvenida(Integer idUsuario){
         Usuario usuariobienvenida = usuarioRepositorio.findById(idUsuario)
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        return new UsuarioBienvenida(
+        return new UsuarioBienvenidaDto(
             usuariobienvenida.getNombre(),
             usuariobienvenida.getRol().getTipo()
         );
@@ -151,6 +153,50 @@ public class UsuarioService {
         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
     usuarioRepositorio.deleteById(idUsuarioAEliminar);
+}
+
+
+    //funciones especiales para el admin 
+
+    public List<UsuarioIngresoDto> listarUsuarios() {
+    return usuarioRepositorio.findAll()
+        .stream()
+        .map(u -> new UsuarioIngresoDto(
+            u.getNombre(),
+            u.getCorreo(),
+            u.getRol().getTipo(),
+            u.isEstado(),
+            u.getFechaRegistro(),
+            u.getUltimoAcceso()
+        ))
+        .collect(Collectors.toList());
+}
+
+    public UsuarioIngresoDto crearUsuarioAdmin(Usuario nuevoUsuario, String rolNombre) {
+    if (usuarioRepositorio.existsByCorreo(nuevoUsuario.getCorreo())) {
+        throw new RuntimeException("El correo ya existe");
+    }
+    String hash = passwordEncoder.encode(nuevoUsuario.getPasswordHash());
+    nuevoUsuario.setPasswordHash(hash);
+
+    Rol rol = rolRepositorio.findByTipo(rolNombre)
+    .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+    nuevoUsuario.setRol(rol);
+
+    nuevoUsuario.setFechaRegistro(OffsetDateTime.now());
+    nuevoUsuario.setUltimoAcceso(OffsetDateTime.now());
+    nuevoUsuario.setEstado(true);
+
+    Usuario guardado = usuarioRepositorio.save(nuevoUsuario);
+
+    return new UsuarioIngresoDto(
+        guardado.getNombre(),
+        guardado.getCorreo(),
+        guardado.getRol().getTipo(),
+        guardado.isEstado(),
+        guardado.getFechaRegistro(),
+        guardado.getUltimoAcceso()
+    );
 }
 }
 
