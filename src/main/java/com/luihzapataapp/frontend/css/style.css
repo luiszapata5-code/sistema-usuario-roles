@@ -1,0 +1,64 @@
+body {
+    background-color: #0F0A1E;
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+
+}
+header {
+
+    background: linear-gradient(180deg, #2D1B69, #0F0A1E);
+    color: #fff;
+    padding: 20px;
+    text-align: center; 
+}
+.contenedor-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+.card-body {
+    background-color: #fcf9ec; 
+    padding: 100px;
+    border-radius: 8px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+}
+.card-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #3b1654;
+
+}
+.card-text {
+    font-size: 16px;
+    color: #555;
+}
+
+.btn-ingresar {
+    background-color: #7C3AED;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 0 20px 4px rgba(124, 58, 237, 0.8);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    font-family: 'Orbitron', sans-serif;
+}
+.btn-registrarse {
+    background-color: #10B981;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 0 20px 4px rgba(5, 192, 164, 0.8);
+    border: 1px solid rgba(4, 155, 169, 0.3);
+    font-family: 'Orbitron', sans-serif;
+}

@@ -1,0 +1,50 @@
+body {
+    background-color: #0F0A1E;
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.navbar {
+    background-color: #2D1B69;
+    padding: 10px;
+}
+
+.container-fluid {
+    display: flex;
+    align-items: center;
+}
+
+.buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 12px;
+}
+
+.navbar-brand {
+    color: #fff;
+}
+
+.container-admin {
+    padding: 30px;
+    color: #fff;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.table {
+    color: #fff;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+    border-radius: 8px;
+}
+
+.table thead {
+    background-color: #2D1B69;
+}
