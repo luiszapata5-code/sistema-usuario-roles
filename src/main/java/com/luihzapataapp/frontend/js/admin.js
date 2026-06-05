@@ -82,4 +82,34 @@ document.getElementById('buscador').addEventListener('input', function() {
         fila.style.display = contenido.includes(texto) ? '' : 'none';
     });
 });
+
+function agregarUsuario() {
+    const nombre = prompt('Nombre del nuevo usuario:');
+    const correo = prompt('Correo del nuevo usuario:');
+    const password = prompt('Contraseña del nuevo usuario:');
+    const rol = prompt('Rol del nuevo usuario (admin/usuario):');
+    const token = localStorage.getItem('token');
+    fetch(`${API}/api/admin/login`, {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nombre, correo, passwordHash: password, rol })
+    }).then(response => {
+        if (response.ok) {
+            alert('Usuario agregado');
+            cargarUsuarios();
+
+        } else {
+            alert('Error al agregar usuario');
+        }
+    });
+}
+
+function cerrarSesion() {
+    localStorage.clear();
+    window.location.href = 'login.html';
+}
+
 cargarUsuarios();

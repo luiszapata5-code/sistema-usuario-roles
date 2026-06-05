@@ -70,3 +70,8 @@ async function editarPerfil() {
         alert('Error al actualizar');
     }
 }
+
+function cerrarSesion() {
+    localStorage.clear();
+    window.location.href = 'login.html';
+}
