@@ -12,5 +12,6 @@ public class LoginResponseDto{
     private String token; // este es el jwt que se le devolvera al usuario con un tiempo de expiracion para que pueda navegar en la pagina sin necesidad de volver a iniciar sesion cada vez que quiera acceder a una nueva pagina
     private String nombre;
     private String rol;
+    private Integer idUsuario;
 }
 

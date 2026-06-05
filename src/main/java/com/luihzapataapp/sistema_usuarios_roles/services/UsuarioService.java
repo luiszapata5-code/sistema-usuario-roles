@@ -58,7 +58,8 @@ public class UsuarioService {
             guardado.getRol().getTipo(),
             guardado.isEstado(),
             guardado.getFechaRegistro(),
-            guardado.getUltimoAcceso()
+            guardado.getUltimoAcceso(),
+            guardado.getIdUsuario()
         );  
 
        
@@ -94,7 +95,8 @@ public class UsuarioService {
         usuario.getRol().getTipo(),
         usuario.isEstado(),
         usuario.getFechaRegistro(),
-        usuario.getUltimoAcceso()
+        usuario.getUltimoAcceso(),
+        usuario.getIdUsuario()
     );
 }
     public UsuarioIngresoDto editar(Integer idUsuario, UsuarioEditarDto datos) {
@@ -135,7 +137,8 @@ public class UsuarioService {
             actualizado.getRol().getTipo(),
             actualizado.isEstado(),
             actualizado.getFechaRegistro(),
-            actualizado.getUltimoAcceso()
+            actualizado.getUltimoAcceso(),
+            actualizado.getIdUsuario()
         );
 
 
@@ -167,7 +170,8 @@ public class UsuarioService {
             u.getRol().getTipo(),
             u.isEstado(),
             u.getFechaRegistro(),
-            u.getUltimoAcceso()
+            u.getUltimoAcceso(),
+            u.getIdUsuario()    
         ))
         .collect(Collectors.toList());
 }
@@ -195,7 +199,8 @@ public class UsuarioService {
         guardado.getRol().getTipo(),
         guardado.isEstado(),
         guardado.getFechaRegistro(),
-        guardado.getUltimoAcceso()
+        guardado.getUltimoAcceso(),
+        guardado.getIdUsuario()
     );
 }
 }
